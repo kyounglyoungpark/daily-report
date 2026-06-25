@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SecureX일일 업무보고서 자동 생성기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="배경-장식 배경-장식1" aria-hidden="true"></div>
+  <div class="배경-장식 배경-장식2" aria-hidden="true"></div>
+
+  <header class="상단바">
+    <div class="로고영역">
+      <span class="브랜드표식" aria-hidden="true">SX</span>
+      <div>
+        <p class="상단라벨">SecureX 기술지원팀</p>
+        <h1>SecureX일일 업무보고서 자동 생성기</h1>
+      </div>
+    </div>
+    <p class="상단설명">메신저 대화와 JIRA 업무 데이터를 바탕으로 일일 보고서 초안을 빠르게 만드는 실습용 화면입니다.</p>
+  </header>
+
+  <main class="레이아웃">
+    <section class="히어로 카드">
+      <div class="히어로-텍스트">
+        <span class="태그">보고서 초안 생성</span>
+        <h2>샘플 데이터를 불러와서 바로 보고서 구조를 확인해 보세요.</h2>
+        <p>
+          작성일을 기준으로 메신저 대화 내용과 JIRA 업무 데이터를 정리해
+          오늘의 처리 내용, 이슈 요약, 내일 예정 항목을 자동 구성합니다.
+        </p>
+      </div>
+      <div class="히어로-정보">
+        <div class="정보-행">
+          <span>연결 단계</span>
+          <strong>화면 구조 완성</strong>
+        </div>
+        <div class="정보-행">
+          <span>API 연결</span>
+          <strong>미연결 상태</strong>
+        </div>
+        <div class="정보-행">
+          <span>샘플 입력</span>
+          <strong>지원</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="입력영역">
+      <div class="카드 입력카드">
+        <div class="섹션-머리">
+          <h3>입력 영역</h3>
+          <p>작성일과 원본 데이터를 입력한 뒤 보고서를 생성합니다.</p>
+        </div>
+
+        <div class="api-영역">
+          <div class="api-상단">
+            <div>
+              <h4>OpenAI API Key 입력 영역</h4>
+              <p>AI 보고서 생성을 사용하려면 API Key를 저장해 주세요.</p>
+            </div>
+            <span id="apiKeyStatus" class="api-상태">API Key 미설정</span>
+          </div>
+          <div class="api-행">
+            <input id="apiKeyInput" type="password" placeholder="OpenAI API Key를 입력하세요" autocomplete="off" />
+            <div class="api-버튼줄">
+              <button id="apiKeySaveBtn" class="버튼 버튼-보조" type="button">API Key 저장</button>
+              <button id="apiKeyDeleteBtn" class="버튼 버튼-외곽" type="button">API Key 삭제</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="폼-그리드">
+          <div class="필드">
+            <label for="reportDate">작성일 입력 영역</label>
+            <input id="reportDate" type="date" />
+            <p class="도움말">보고서 기준 날짜를 지정합니다.</p>
+          </div>
+
+          <div class="필드 필드-넓음">
+            <label for="messengerInput">메신저 대화 내용 입력 영역</label>
+            <textarea id="messengerInput" rows="12" placeholder="메신저 대화 내용을 입력하거나 샘플 데이터를 불러오세요."></textarea>
+            <p class="도움말">SecureX 기술지원팀 메신저 대화 기록을 붙여 넣을 수 있습니다.</p>
+          </div>
+
+          <div class="필드 필드-넓음">
+            <label for="jiraInput">JIRA 업무 데이터 입력 영역</label>
+            <textarea id="jiraInput" rows="12" placeholder="JIRA CSV 데이터를 입력하거나 샘플 데이터를 불러오세요."></textarea>
+            <p class="도움말">CSV 형식의 JIRA 업무 목록을 사용합니다.</p>
+          </div>
+        </div>
+
+        <div class="버튼줄">
+          <button id="loadSampleBtn" class="버튼 버튼-보조" type="button">샘플 데이터 불러오기 버튼</button>
+          <button id="generateBtn" class="버튼 버튼-기본" type="button">로컬 샘플 보고서 생성</button>
+          <button id="aiGenerateBtn" class="버튼 버튼-기본 버튼-딥" type="button">AI 보고서 생성</button>
+          <button id="resetBtn" class="버튼 버튼-외곽" type="button">초기화 버튼</button>
+        </div>
+
+        <p id="statusMessage" class="상태메시지" aria-live="polite">샘플 데이터를 불러오거나 직접 입력한 뒤 보고서를 생성할 수 있습니다.</p>
+      </div>
+
+      <div class="카드 출력카드">
+        <div class="출력-상단">
+          <div class="섹션-머리">
+            <div>
+              <h3>보고서 출력 영역</h3>
+              <p>생성된 결과를 검토하고 복사하거나 내려받을 수 있습니다.</p>
+            </div>
+          </div>
+          <div class="출력-행동">
+            <button id="copyBtn" class="버튼 버튼-보조" type="button">보고서 복사</button>
+            <button id="downloadBtn" class="버튼 버튼-외곽" type="button">TXT로 다운로드</button>
+          </div>
+        </div>
+
+        <div class="출력-안내">
+          <p id="reportModeLabel" class="출력-방식">보고서 생성 방식: 로컬 샘플 생성</p>
+          <p class="출력-보조">이 기능은 OpenAI API Key 없이 실행할 수 있습니다.</p>
+        </div>
+
+        <div class="출력-메타">
+          <p id="reportTitleLabel" class="출력-제목">SecureX 일일 업무보고서</p>
+          <p id="reportMetaLabel" class="출력-부제">작성일: -</p>
+        </div>
+
+        <section class="결과-섹션">
+          <div class="섹션-머리">
+            <h4>업무 현황 요약표</h4>
+            <p>메신저 대화와 JIRA 데이터를 종합한 주요 업무 정리입니다.</p>
+          </div>
+          <div class="표-래퍼">
+            <table class="요약표">
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>주요 내용</th>
+                  <th>담당자</th>
+                  <th>상태</th>
+                  <th>우선순위</th>
+                  <th>다음 조치</th>
+                </tr>
+              </thead>
+              <tbody id="summaryTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="결과-섹션">
+          <div class="섹션-머리">
+            <h4>일일 업무보고서 본문</h4>
+            <p>팀장 공유용 서술형 보고서 초안입니다.</p>
+          </div>
+          <textarea id="reportBody" class="보고서-본문" readonly placeholder="생성된 보고서 본문이 이곳에 표시됩니다."></textarea>
+        </section>
+
+        <div class="출력-하단">
+          <p id="reportGeneratedAt" class="생성시각">보고서 생성 시각: -</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

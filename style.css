@@ -1,0 +1,696 @@
+:root {
+  --primary: #0a0a0a;
+  --primary-press: #1f1f1f;
+  --primary-tint: #2b2b2b;
+  --primary-soft: #faf5e8;
+  --cream: #fffaf0;
+  --ink: #0a0a0a;
+  --ink-mute: #6a6a6a;
+  --border: #e5e5e5;
+  --white: #ffffff;
+  --shadow: 0 24px 60px rgba(10, 10, 10, 0.12);
+  --shadow-soft: 0 10px 30px rgba(10, 10, 10, 0.08);
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+  --max-width: 1240px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255, 250, 240, 0.95), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(250, 245, 232, 0.8), transparent 34%),
+    radial-gradient(circle at 15% 85%, rgba(235, 230, 214, 0.72), transparent 28%),
+    linear-gradient(180deg, #fffaf0 0%, #ffffff 40%, #faf5e8 100%);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(10, 10, 10, 0.06), transparent 22%),
+    radial-gradient(circle at 85% 30%, rgba(31, 31, 31, 0.05), transparent 18%),
+    radial-gradient(circle at 50% 80%, rgba(255, 250, 240, 0.8), transparent 18%);
+  filter: blur(20px);
+  z-index: -2;
+}
+
+.배경-장식 {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(18px);
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.배경-장식1 {
+  width: 360px;
+  height: 360px;
+  top: -120px;
+  right: -120px;
+  background: radial-gradient(circle, rgba(255, 250, 240, 0.98), rgba(10, 10, 10, 0.07) 60%, transparent 72%);
+}
+
+.배경-장식2 {
+  width: 420px;
+  height: 420px;
+  left: -160px;
+  bottom: -180px;
+  background: radial-gradient(circle, rgba(250, 245, 232, 0.95), rgba(26, 26, 26, 0.07) 58%, transparent 72%);
+}
+
+.상단바,
+.레이아웃 {
+  width: min(var(--max-width), calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.상단바 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 0 16px;
+}
+
+.로고영역 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.브랜드표식 {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-press) 100%);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: var(--shadow-soft);
+}
+
+.상단라벨 {
+  margin: 0 0 6px;
+  color: var(--ink-mute);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.상단바 h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+}
+
+.상단설명 {
+  max-width: 420px;
+  margin: 0;
+  padding-top: 10px;
+  color: var(--ink-mute);
+  line-height: 1.6;
+}
+
+.레이아웃 {
+  display: grid;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.카드 {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(230, 230, 230, 0.9);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.히어로 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.9fr);
+  gap: 20px;
+  padding: 28px;
+  overflow: hidden;
+  position: relative;
+}
+
+.히어로::after {
+  content: "";
+  position: absolute;
+  inset: auto -120px -140px auto;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(10, 10, 10, 0.12), rgba(250, 245, 232, 0.45) 45%, transparent 72%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.히어로-텍스트 {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding-right: 10px;
+}
+
+.태그,
+.출력-칩 {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.히어로 h2 {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2rem, 3vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+}
+
+.히어로 p {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--ink-mute);
+  line-height: 1.7;
+}
+
+.히어로-정보 {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: calc(var(--radius-xl) - 4px);
+  background:
+    radial-gradient(circle at top left, rgba(250, 245, 232, 0.85), transparent 45%),
+    linear-gradient(180deg, rgba(255, 250, 240, 0.95), rgba(255, 255, 255, 0.98));
+  border: 1px solid rgba(230, 230, 230, 0.8);
+  align-self: center;
+}
+
+.정보-행 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.정보-행 span {
+  color: var(--ink-mute);
+  font-size: 0.92rem;
+}
+
+.정보-행 strong {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.입력영역 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: 20px;
+}
+
+.입력카드,
+.출력카드 {
+  padding: 24px;
+}
+
+.섹션-머리 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.섹션-머리 h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+}
+
+.섹션-머리 p {
+  margin: 0;
+  color: var(--ink-mute);
+  font-size: 0.94rem;
+}
+
+.api-영역 {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding: 18px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, rgba(250, 245, 232, 0.7), rgba(255, 255, 255, 0.96));
+  border: 1px solid rgba(10, 10, 10, 0.1);
+}
+
+.api-상단 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.api-상단 h4 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.api-상단 p {
+  margin: 0;
+  color: var(--ink-mute);
+  font-size: 0.9rem;
+}
+
+.api-상태 {
+  flex: 0 0 auto;
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(250, 245, 232, 0.95);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.api-행 {
+  display: grid;
+  gap: 12px;
+}
+
+.api-행 input[type="password"] {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--ink);
+  font: inherit;
+}
+
+.api-버튼줄 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.폼-그리드 {
+  display: grid;
+  gap: 16px;
+}
+
+.필드 {
+  display: grid;
+  gap: 8px;
+}
+
+.필드-넓음 {
+  grid-column: 1 / -1;
+}
+
+.필드 label {
+  font-weight: 700;
+  font-size: 0.96rem;
+  letter-spacing: -0.01em;
+}
+
+input[type="date"],
+textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.97);
+  color: var(--ink);
+  font: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+input[type="date"] {
+  min-height: 48px;
+  padding: 0 14px;
+}
+
+textarea {
+  min-height: 220px;
+  padding: 14px 16px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+input[type="date"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(10, 10, 10, 0.45);
+  box-shadow: 0 0 0 4px rgba(10, 10, 10, 0.08);
+}
+
+.도움말 {
+  margin: 0;
+  color: var(--ink-mute);
+  font-size: 0.86rem;
+}
+
+.버튼줄 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.버튼 {
+  appearance: none;
+  border: 0;
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  min-height: 44px;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+
+.버튼:hover {
+  transform: translateY(-1px);
+}
+
+.버튼:active {
+  transform: translateY(1px);
+}
+
+.버튼:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(10, 10, 10, 0.16);
+}
+
+.버튼-기본 {
+  color: var(--white);
+  background: var(--primary);
+  box-shadow: 0 10px 24px rgba(10, 10, 10, 0.14);
+}
+
+.버튼-기본:hover {
+  background: var(--primary-press);
+}
+
+.버튼-딥 {
+  background: var(--primary-press);
+}
+
+.버튼-보조 {
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.버튼-외곽 {
+  color: var(--primary);
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.상태메시지 {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(244, 237, 228, 0.48);
+  color: var(--ink-mute);
+  line-height: 1.6;
+}
+
+.출력카드 {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.출력-상단 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.출력-행동 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.출력-안내 {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  background: rgba(250, 245, 232, 0.6);
+  border: 1px solid rgba(10, 10, 10, 0.08);
+}
+
+.출력-방식 {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.출력-보조 {
+  margin: 0;
+  color: var(--ink-mute);
+  font-size: 0.92rem;
+}
+
+.출력-메타 {
+  display: grid;
+  gap: 4px;
+  padding: 4px 0 0;
+}
+
+.출력-제목 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.출력-부제 {
+  margin: 0;
+  color: var(--ink-mute);
+  font-size: 0.95rem;
+}
+
+.결과-섹션 {
+  display: grid;
+  gap: 12px;
+}
+
+.결과-섹션 h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.표-래퍼 {
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.요약표 {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 920px;
+}
+
+.요약표 thead th {
+  position: sticky;
+  top: 0;
+  background: #faf5e8;
+  color: var(--ink);
+  text-align: left;
+  padding: 14px 12px;
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.요약표 td {
+  padding: 13px 12px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(230, 230, 230, 0.8);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.요약표 tbody tr:nth-child(even) {
+  background: rgba(250, 245, 232, 0.34);
+}
+
+.요약표 tbody tr.우선순위-high {
+  background: rgba(10, 10, 10, 0.05);
+  box-shadow: inset 4px 0 0 var(--primary);
+}
+
+.상태-배지,
+.우선순위-배지 {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.상태-배지 {
+  background: rgba(250, 245, 232, 0.95);
+  color: var(--ink);
+}
+
+.우선순위-배지.is-high {
+  background: rgba(10, 10, 10, 0.1);
+  color: var(--primary);
+}
+
+.우선순위-배지.is-medium {
+  background: rgba(10, 10, 10, 0.08);
+  color: var(--ink-mute);
+}
+
+.우선순위-배지.is-low {
+  background: rgba(10, 10, 10, 0.06);
+  color: var(--ink-mute);
+}
+
+.우선순위-배지.is-unknown {
+  background: rgba(105, 105, 105, 0.1);
+  color: var(--ink-mute);
+}
+
+.보고서-본문 {
+  min-height: 520px;
+  margin: 0;
+  padding: 18px;
+  font-family: inherit;
+  white-space: pre-wrap;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 245, 232, 0.5));
+}
+
+.생성시각 {
+  margin: 0;
+  color: var(--ink-mute);
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.보고서-본문::placeholder {
+  color: #8e8e8e;
+}
+
+@media (max-width: 1024px) {
+  .상단바 {
+    flex-direction: column;
+  }
+
+  .입력영역 {
+    grid-template-columns: 1fr;
+  }
+
+  .보고서-출력 {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 720px) {
+  .상단바,
+  .레이아웃 {
+    width: min(100% - 20px, var(--max-width));
+  }
+
+  .상단바 {
+    padding-top: 20px;
+  }
+
+  .히어로,
+  .입력카드,
+  .출력카드 {
+    padding: 20px;
+  }
+
+  .히어로 {
+    grid-template-columns: 1fr;
+  }
+
+  .섹션-머리,
+  .출력-상단 {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .버튼 {
+    width: 100%;
+  }
+
+  .버튼줄 {
+    display: grid;
+  }
+
+  .api-상단,
+  .api-버튼줄 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .출력-상단,
+  .출력-행동 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .출력-행동 .버튼 {
+    width: 100%;
+  }
+
+  .브랜드표식 {
+    width: 48px;
+    height: 48px;
+  }
+}
